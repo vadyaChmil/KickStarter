@@ -17,7 +17,7 @@ public class DonateView extends ViewAbstract {
 	@Override
 	public void printContent() {
 		output.write("----------Window of donation to project-----------");
-		output.write();
+		output.write("\n");
 		output.write("You may donating on " + model.getWorkingProject().getName());
 		output.write(model.getWorkingProject().getShortContent());
 		output.write("Input your name");

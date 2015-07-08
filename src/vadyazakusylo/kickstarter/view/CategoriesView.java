@@ -21,10 +21,10 @@ public class CategoriesView extends ViewAbstract {
 	public void printContent() {
 		output.write("------------Choose one of the category------------");
 		try {
-			output.write();
+			output.write("\n");
 			printCategoriesList();
 		} catch (GettingDateException e) {
-			output.write();
+			output.write("\n");
 			output.write(e);
 		}
 		output.write("\n0. Return");

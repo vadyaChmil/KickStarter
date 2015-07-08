@@ -22,10 +22,10 @@ public class ProjectsView extends ViewAbstract {
 	public void printContent() {
 		output.write("------------Choose one of the project-------------");
 		try {
-			output.write();
+			output.write("\n");
 			printProjectsList();
 		} catch (GettingDateException e) {
-			output.write();
+			output.write("\n");
 			output.write(e);
 		}
 		output.write("\n0. Return");

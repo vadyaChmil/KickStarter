@@ -19,11 +19,11 @@ public class ProjectView extends ViewAbstract {
 	public void printContent() {
 		output.write("---------------------Project----------------------");
 		try {
-			output.write();
+			output.write("\n");
 			printProject();
 			output.write("\nInput:\n1 - to donate\n2 - to ask question\n0 - to return");
 		} catch (GettingDateException e) {
-			output.write();
+			output.write("\n");
 			output.write(e);
 			output.write("\nInput:\n0 - to return");
 		}

@@ -5,10 +5,6 @@ import vadyazakusylo.kickstarter.model.exception.GettingDateException;
 
 public interface ProjectDao {
 
-	static void setCurrentMoney(){
-		
-	}
-	
 	Project getProject(String projectName);
 
 	double getCurrenMoney(String nameProject) throws GettingDateException;

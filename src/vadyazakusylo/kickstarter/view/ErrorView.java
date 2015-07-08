@@ -15,7 +15,7 @@ public class ErrorView extends ViewAbstract {
 	@Override
 	public void printContent() {
 		output.write("----------------------ERROR-----------------------");
-		output.write();
+		output.write("\n");
 		output.write("--You have inputted incorrect number or symbols---");
 		output.write("----Input 0 for return to the previous window-----");
 	}

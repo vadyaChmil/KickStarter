@@ -17,10 +17,10 @@ public class StartView extends ViewAbstract {
 	public void printContent() {
 		output.write("--------------Welcome to KickStarter--------------");
 		try {
-			output.write();
+			output.write("\n");
 			output.write(model.getQuote().getQuote());
 		} catch (GettingDateException | IndexOutOfBoundsException e) {
-			output.write();
+			output.write("\n");
 		}
 		output.write("\nInput:\n1 - to start\n0 - to exit");
 	}

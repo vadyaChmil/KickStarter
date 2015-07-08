@@ -16,7 +16,7 @@ public class QuestionView extends ViewAbstract {
 	@Override
 	public void printContent() {
 		output.write("-------------------Ask question-------------------");
-		output.write();
+		output.write("\n");
 		output.write("Enter your question and input enter.");
 		question = input.readString();
 		output.write("\nInput:\n1 - send the question\n0 - to return");
