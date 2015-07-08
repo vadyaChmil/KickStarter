@@ -22,7 +22,7 @@ import vadyazakusylo.kickstarter.view.output.ConsoleOutput;
 import vadyazakusylo.kickstarter.view.output.Output;
 
 public class Runner {
-	// test
+	// test copy
 	private String driver = "com.mysql.jdbc.Driver";
 	private String url = "jdbc:mysql://localhost/kickstarter";
 	private String user = "root";
