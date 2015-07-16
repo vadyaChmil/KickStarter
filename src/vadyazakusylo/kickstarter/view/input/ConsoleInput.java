@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class ConsoleInput implements Input {
 
+	@SuppressWarnings("resource")
 	@Override
 	public int readInt() {
 		try {
@@ -18,6 +19,7 @@ public class ConsoleInput implements Input {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	@Override
 	public double readDouble() {
 		try {
