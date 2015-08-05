@@ -25,8 +25,8 @@ public class QuotesDaoMySql implements QuotesDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			List<Quote> quotes = new ArrayList<Quote>();
 			while (resultSet.next()) {
-				quotes.add(new Quote(resultSet.getString("quotes_q.quote"), resultSet
-						.getString("quotes_a.autor")));
+				quotes.add(new Quote(resultSet.getString("quote.text"), resultSet
+						.getString("autor.name")));
 			}
 			return quotes;
 		} catch (SQLException e) {
@@ -37,8 +37,8 @@ public class QuotesDaoMySql implements QuotesDao {
 
 	private String selectQuotes() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("select quotes_q.quote,  quotes_a.autor ");
-		sql.append("from quotes_q natural join quotes_a;");
+		sql.append("select quote.text, autor.name ");
+		sql.append("from quote natural join autor;");
 		return sql.toString();
 	}
 }

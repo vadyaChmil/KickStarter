@@ -26,12 +26,12 @@ public class ProjectDaoMySql implements ProjectDao {
 			preparedStatement.setString(1, projectName);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				String name = resultSet.getString("project.project");
+				String name = resultSet.getString("project.name");
 				String shortDescription = resultSet.getString("description.description");
-				double needMoney = resultSet.getDouble("project.needMoney");
-				double currentMoney = resultSet.getDouble("project.currentMoney");
-				int daysLeft = resultSet.getInt("project.daysLeft");
-				String urlVideo = resultSet.getString("description.urlVideo");
+				double needMoney = resultSet.getDouble("project.need_money");
+				double currentMoney = resultSet.getDouble("project.current_money");
+				int daysLeft = resultSet.getInt("project.days_left");
+				String urlVideo = resultSet.getString("description.url_video");
 				Map<String, String> questionAnswer = getQuestionAnswerMap(projectName);
 				project = new Project(name, shortDescription, needMoney, currentMoney, daysLeft,
 						urlVideo, questionAnswer);
@@ -45,13 +45,13 @@ public class ProjectDaoMySql implements ProjectDao {
 
 	private String selectProject() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("select project.project, ");
+		sql.append("select project.name, ");
 		sql.append("description.description, ");
-		sql.append("project.needMoney, project.currentMoney, ");
-		sql.append("project.daysLeft, description.urlVideo ");
+		sql.append("project.need_money, project.current_money, ");
+		sql.append("project.days_left, description.url_video ");
 		sql.append("from project inner join description ");
-		sql.append("on project.id_project = description.id_project ");
-		sql.append("and project.project = ?;");
+		sql.append("on project.id = description.id_project ");
+		sql.append("and project.name = ?;");
 		return sql.toString();
 	}
 
@@ -78,11 +78,11 @@ public class ProjectDaoMySql implements ProjectDao {
 	private String selectQuestionAnswer() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select question, answer ");
-		sql.append("from questions ");
+		sql.append("from question ");
 		sql.append("where id_project = ");
-		sql.append("(select id_project ");
+		sql.append("(select id ");
 		sql.append("from project ");
-		sql.append("where project = ?);");
+		sql.append("where name = ?);");
 		return sql.toString();
 	}
 
@@ -94,7 +94,7 @@ public class ProjectDaoMySql implements ProjectDao {
 			preparedStatement.setString(1, nameProject);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				currentMoney = resultSet.getDouble("project.currentMoney");
+				currentMoney = resultSet.getDouble("project.current_money");
 			}
 		} catch (SQLException e) {
 			System.out.println("Can't connect to table \"Projects\"");
@@ -105,9 +105,9 @@ public class ProjectDaoMySql implements ProjectDao {
 
 	private String selectCurrentMoney() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("select currentMoney ");
+		sql.append("select current_money ");
 		sql.append("from project ");
-		sql.append("where project = ?;");
+		sql.append("where name = ?;");
 		return sql.toString();
 	}
 
@@ -126,8 +126,8 @@ public class ProjectDaoMySql implements ProjectDao {
 	private String updateCurrentMoney() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("update project ");
-		sql.append("set currentMoney = ? ");
-		sql.append("where project = ?;");
+		sql.append("set current_money = ? ");
+		sql.append("where name = ?;");
 		return sql.toString();
 	}
 
@@ -145,12 +145,12 @@ public class ProjectDaoMySql implements ProjectDao {
 
 	private String updateQuestion() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("insert into questions ");
+		sql.append("insert into question ");
 		sql.append("(question, id_project) ");
 		sql.append("values (?, ");
-		sql.append("(select id_project ");
+		sql.append("(select id ");
 		sql.append("from project ");
-		sql.append("where project = ?));");
+		sql.append("where name = ?));");
 		return sql.toString();
 	}
 }

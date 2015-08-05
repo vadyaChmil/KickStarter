@@ -27,11 +27,11 @@ public class ProjectsDaoMySql implements ProjectsDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			List<Project> projects = new ArrayList<Project>();
 			while (resultSet.next()) {
-				String name = resultSet.getString("project.project");
+				String name = resultSet.getString("project.name");
 				String shortDescription = resultSet.getString("description.description");
-				double needMoney = resultSet.getDouble("project.needMoney");
-				double currentMoney = resultSet.getDouble("project.currentMoney");
-				int daysLeft = resultSet.getInt("project.daysLeft");
+				double needMoney = resultSet.getDouble("project.need_money");
+				double currentMoney = resultSet.getDouble("project.current_money");
+				int daysLeft = resultSet.getInt("project.days_left");
 				projects.add(new Project(name, shortDescription, needMoney, currentMoney, daysLeft));
 			}
 			return projects;
@@ -43,15 +43,15 @@ public class ProjectsDaoMySql implements ProjectsDao {
 
 	private String selectProjects() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("select project.project, ");
+		sql.append("select project.name, ");
 		sql.append("description.description, ");
-		sql.append("project.needMoney, project.currentMoney, ");
-		sql.append("project.daysLeft ");
+		sql.append("project.need_money, project.current_money, ");
+		sql.append("project.days_left ");
 		sql.append("from project inner join description ");
-		sql.append("on project.id_project = description.id_project ");
+		sql.append("on project.id = description.id_project ");
 		sql.append("and project.id_category = ");
-		sql.append("(select id_category from category ");
-		sql.append("where category = ?);");
+		sql.append("(select id from category ");
+		sql.append("where name = ?);");
 		return sql.toString();
 	}
 }

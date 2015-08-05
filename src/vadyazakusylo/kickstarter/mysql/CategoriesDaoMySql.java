@@ -26,7 +26,7 @@ public class CategoriesDaoMySql implements CategoriesDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			categories = new ArrayList<Category>();
 			while (resultSet.next()) {
-				categories.add(new Category(resultSet.getString("category")));
+				categories.add(new Category(resultSet.getString("name")));
 			}
 			return categories;
 		} catch (SQLException e) {
@@ -37,7 +37,7 @@ public class CategoriesDaoMySql implements CategoriesDao {
 
 	private String selectCategories() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("select category ");
+		sql.append("select name ");
 		sql.append("from category;");
 		return sql.toString();
 	}
